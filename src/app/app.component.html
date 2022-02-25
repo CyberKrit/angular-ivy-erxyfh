@@ -1,7 +1,9 @@
 <button (click)="gotoPage('post')">Post</button>
-<p>{{ '' | test: '':3 }}</p>
-<!-- <test-dir></test-dir> -->
-<div test-dir>
+<!-- <p>{{ '' | test: '':3 }}</p> -->
+<div testDir="extra-data" hoverFontColor="yellow" hoverBackdrop="coral">
   <h4>Directive</h4>
+</div>
+<div *show="true">
+  <h1>Show my structural content</h1>
 </div>
 <router-outlet></router-outlet>
