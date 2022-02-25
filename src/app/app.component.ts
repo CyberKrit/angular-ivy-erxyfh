@@ -1,4 +1,13 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import {
+  AfterContentInit,
+  Component,
+  ElementRef,
+  OnInit,
+  QueryList,
+  ViewChild,
+  ViewChildren,
+  ViewEncapsulation,
+} from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,11 +16,20 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css'],
   encapsulation: ViewEncapsulation.Emulated,
 })
-export class AppComponent {
+export class AppComponent implements OnInit, AfterContentInit {
+  @ViewChild('magic', { static: true }) magicRef: ElementRef;
+  @ViewChildren('testRef') testRef: QueryList<any>;
+
   constructor(private router: Router) {}
 
+  ngOnInit() {}
+
+  ngAfterContentInit() {
+    this.testRef.map((each) => console.log(each));
+    console.log(this.magicRef.nativeElement.innerHTML);
+  }
+
   gotoPage(page: string) {
-    console.log('HERE');
     this.router.navigate(['/post']);
   }
 }
